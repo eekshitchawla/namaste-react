@@ -1,18 +1,11 @@
+const SingleShimmer = () => <div id="shimmer-card"></div>;
 
-const Shimmer = () => {
-  return (
-   <>
-   <div id="shimmer-cont">
-     <div id="shimmer-card"></div> 
-     <div id="shimmer-card"></div> 
-     <div id="shimmer-card"></div> 
-     <div id="shimmer-card"></div> 
-     <div id="shimmer-card"></div> 
-     <div id="shimmer-card"></div> ß
-     <div id="shimmer-card"></div> 
-   </div>
-   </> 
-  )
-}
+const Shimmer = () => (
+  <div id="shimmer-cont">
+    {Array.from({ length: 12 }, (_, index) => (
+      <SingleShimmer key={index} />
+    ))}
+  </div>
+);
 
 export default Shimmer;
