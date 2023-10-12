@@ -2,7 +2,7 @@ import ItemsList from "./ItemsList";
 
 const RestaurantCategory = (props) => {
   // const { title, itemCards } = category?.data?.card?.card;
-  console.log(props);
+  // console.log(props);
   const handleClick = () => {
     // console.log(props.setShowIndex);
     // console.log(props.showIndex);

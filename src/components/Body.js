@@ -25,7 +25,7 @@ const Body = () => {
     setFilteredList(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    console.log(list);
+    // console.log(list);
   };
 
   if (status === false) return <h1>Looks like you're offline!</h1>;
@@ -33,40 +33,44 @@ const Body = () => {
   return list?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      {/* TOP RESTUARANTS */}
-      <button
-        className="search"
-        onClick={() => {
-          const temp = list.filter((res) => res.info.avgRating > 4);
-          setFilteredList(temp);
-        }}
-      >
-        Top Restaurants
-      </button>
+    <div className="body flex items-center justify-center flex-col flex-wrap ">
+      <div className="topBar flex items-center justify-between w-[80vw]">
+        {/* TOP RESTUARANTS */}
+        <button
+          className="search"
+          onClick={() => {
+            const temp = list.filter((res) => res.info.avgRating > 4);
+            setFilteredList(temp);
+          }}
+        >
+          Top Restaurants
+        </button>
 
-      {/* SEARCH FUNCTIONALITY */}
-      <input
-        type="text"
-        value={searchText}
-        onChange={(e) => {
-          setSearchtext(e.target.value);
-        }}
-      />
-      <button
-        className="search"
-        onClick={() => {
-          const filtered = list.filter((li) =>
-            li.info.name.toLowerCase().includes(searchText.toLowerCase())
-          );
-          setFilteredList(filtered);
-        }}
-      >
-        Search
-      </button>
-
+        {/* SEARCH FUNCTIONALITY */}
+        <div className="flex">
+          <input
+            className="border border-b-2 border-black outline-none p-2 m-2 rounded-md"
+            type="text"
+            value={searchText}
+            onChange={(e) => {
+              setSearchtext(e.target.value);
+            }}
+          />
+          <button
+            className="search"
+            onClick={() => {
+              const filtered = list.filter((li) =>
+                li.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredList(filtered);
+            }}
+          >
+            Search
+          </button>
+        </div>
+      </div>
       {/* RENDER LIST */}
-      <div className="res-container">
+      <div className="flex-wrap flex items-center justify-center">
         {filteredList?.map((restaurant) => (
           <Link
             key={restaurant.info.id}

@@ -5,16 +5,20 @@ const RestaurantCard = ({ resData }) => {
   const { name, cuisines, avgRating, isOpen, cloudinaryImageId } = resData.info;
   const contextData = useContext(UserContext);
   return (
-    <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+    <div className="scroll w-64 h-96 m-2 p-3 flex flex-col items-left justify-center text-left overflow-scroll shadow-lg hover:shadow-2xl rounded-xl">
       <img
-        className="res-logo"
+        className="w-[100%] rounded-xl"
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
       />
-      <h2>{name}</h2>
+      <strong className="text-xl">{name.toUpperCase()}</strong>
+      <br />
       <h4>{cuisines.join(", ")}</h4>
+      <br />
       <h4>{avgRating} stars</h4>
+      <br />
       <h4>{isOpen ? "OPEN NOW" : "CLOSED :/"}</h4>
+      <br />
       <h4>User: {contextData.loggedInUser}</h4>
     </div>
   );
