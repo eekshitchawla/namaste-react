@@ -6,10 +6,28 @@ const cartSlice = createSlice({
     items: [], //cart items
   },
   reducers: {
+    // addItem: (state, action) => {
+    //   // console.log(action);
+    //   // const tempAction = {
+    //   //   card: {
+    //   //     ...action.payload.card,
+    //   //     qty: 1,
+    //   //   },
+    //   // };
+    //   // console.log(tempAction);
+    //   // // state.items = [...state.items, tempAction];
+    //   // state.items.push(tempAction);
+    //   // console.log(current(state.items));
+    //   // // alert(action.payload.card.info.name + " added to Cart");
+    //   // action.push({ qty: 1 });
+    //   state.items.push(action);
+    //   state.items[state.items.length - 1] = {
+    //     ...state.items[state.items.length - 1],
+    //     qty: 1,
+    //   };
+    // },
     addItem: (state, action) => {
       state.items.push(action);
-      // const items = state.items;
-      alert(action.payload.card.info.name + " added to Cart");
     },
     removeItem: (state, id) => {
       console.log(current(state));
@@ -19,7 +37,7 @@ const cartSlice = createSlice({
         const element = items[index];
         if (element.payload.card.info.id === id.payload.card.info.id) {
           items.splice(index, 1);
-          alert(id.payload.card.info.name + " is removed from Cart");
+          // alert(id.payload.card.info.name + " is removed from Cart");
         }
       }
     },

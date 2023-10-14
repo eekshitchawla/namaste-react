@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
 import UserContext from "../utils/UserContext";
 const RestaurantCard = ({ resData }) => {
-  const { name, cuisines, avgRating, isOpen, cloudinaryImageId } = resData.info;
+  const { name, cuisines, avgRating, sla, cloudinaryImageId } = resData.info;
+
   const contextData = useContext(UserContext);
   return (
     <div className="noScroll scroll w-64 h-96 m-2 p-3 flex flex-col items-left justify-center text-left overflow-scroll shadow-lg hover:shadow-2xl rounded-xl">
@@ -13,13 +14,27 @@ const RestaurantCard = ({ resData }) => {
       />
       <strong className="text-xl">{name.toUpperCase()}</strong>
       <br />
-      <h4>{cuisines.join(", ")}</h4>
+      <h4>
+        <strong>Cuisines: </strong>
+        {cuisines.join(", ")}
+      </h4>
       <br />
-      <h4>{avgRating} stars</h4>
+      <h4>
+        {" "}
+        <strong>Rating: </strong>
+        {avgRating} stars
+      </h4>
       <br />
-      <h4>{isOpen ? "OPEN NOW" : "CLOSED :/"}</h4>
+      <h4>
+        <strong>Delivering in: </strong>
+        {sla.deliveryTime} mins
+      </h4>
       <br />
-      <h4>User: {contextData.loggedInUser}</h4>
+      <h4>
+        {" "}
+        <strong>User: </strong>
+        {contextData.loggedInUser}
+      </h4>
     </div>
   );
 };
