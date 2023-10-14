@@ -5,7 +5,7 @@ const RestaurantCard = ({ resData }) => {
   const { name, cuisines, avgRating, isOpen, cloudinaryImageId } = resData.info;
   const contextData = useContext(UserContext);
   return (
-    <div className="scroll w-64 h-96 m-2 p-3 flex flex-col items-left justify-center text-left overflow-scroll shadow-lg hover:shadow-2xl rounded-xl">
+    <div className="noScroll scroll w-64 h-96 m-2 p-3 flex flex-col items-left justify-center text-left overflow-scroll shadow-lg hover:shadow-2xl rounded-xl">
       <img
         className="w-[100%] rounded-xl"
         alt="res-logo"
@@ -28,7 +28,7 @@ export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     return (
       <div>
-        <label className="absolute m-2 p-2 bg-black text-white rounded-lg">
+        <label className="absolute m-2 p-2 bg-green-600 text-white text-sm rounded-lg">
           PURE 🟢
         </label>
         <RestaurantCard {...props} />

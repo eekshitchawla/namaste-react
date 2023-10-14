@@ -3,12 +3,15 @@ import RestaurantCard, { withPromotedLabel } from "./RestuarantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import WhatsOnYourMind from "./WhatsOnYourMind.js";
 
 const Body = () => {
   const [list, setList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
+  const [toggleList, setToggleList] = useState(true);
   const [searchText, setSearchtext] = useState("");
   const status = useOnlineStatus();
+  const [mind, setMind] = useState(null);
   const RestaurantCardPromo = withPromotedLabel(RestaurantCard);
   useEffect(() => {
     fetchData();
@@ -25,7 +28,8 @@ const Body = () => {
     setFilteredList(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    // console.log(list);
+    setMind(json?.data?.cards[1]?.card?.card?.imageGridCards?.info);
+    console.log(json);
   };
 
   if (status === false) return <h1>Looks like you're offline!</h1>;
@@ -34,55 +38,72 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body flex items-center justify-center flex-col flex-wrap ">
-      <div className="topBar flex items-center justify-between w-[80vw]">
+      {/* whats on your mind? */}
+      <WhatsOnYourMind mind={mind} />
+
+      {/* BUTTON AND SEARCH */}
+      <div className=" border-t-4 border-b-4 py-4 topBar flex items-center justify-between w-[80vw]">
         {/* TOP RESTUARANTS */}
         <button
-          className="search"
+          className="text-[#fc8019] p-2 rounded-md text-md font-bold"
           onClick={() => {
             const temp = list.filter((res) => res.info.avgRating > 4);
-            setFilteredList(temp);
+            setToggleList(!toggleList);
+            setFilteredList(toggleList ? list : temp);
           }}
         >
-          Top Restaurants
+          {toggleList ? "Show Top Restaurants" : "Show All Restaurants"}
         </button>
 
         {/* SEARCH FUNCTIONALITY */}
         <div className="flex">
-          <input
-            className="border border-b-2 border-black outline-none p-2 m-2 rounded-md"
-            type="text"
-            value={searchText}
-            onChange={(e) => {
-              setSearchtext(e.target.value);
-            }}
-          />
-          <button
-            className="search"
-            onClick={() => {
-              const filtered = list.filter((li) =>
-                li.info.name.toLowerCase().includes(searchText.toLowerCase())
-              );
-              setFilteredList(filtered);
-            }}
-          >
-            Search
-          </button>
+          <form>
+            <input
+              className="border border-b-2 border-[#fc8019] outline-none p-1 m-2 rounded-md"
+              type="text"
+              value={searchText}
+              onChange={(e) => {
+                setSearchtext(e.target.value);
+              }}
+            />
+            <button
+              className="text-[#fc8019] p-2 rounded-md text-md font-bold search"
+              onClick={(e) => {
+                e.preventDefault();
+                const filtered = list.filter((li) =>
+                  li.info.name.toLowerCase().includes(searchText.toLowerCase())
+                );
+                setFilteredList(filtered);
+              }}
+            >
+              Search
+            </button>
+          </form>
         </div>
       </div>
+
       {/* RENDER LIST */}
-      <div className="flex-wrap flex items-center justify-center">
-        {filteredList?.map((restaurant) => (
-          <Link
-            key={restaurant.info.id}
-            to={"restaurants/" + restaurant.info.id}
-          >
-            {restaurant.info.veg ? (
-              <RestaurantCardPromo resData={restaurant} />
-            ) : (
-              <RestaurantCard resData={restaurant} />
-            )}
-          </Link>
-        ))}
+      <div className="w-[100%] py-4 flex-wrap flex flex-col items-center justify-center">
+        <div className="w-[80%] py-4 text-2xl">
+          <strong>Restaurants with online food delivery in Delhi</strong>
+        </div>
+        <div className="w-[80%] flex flex-wrap">
+          {filteredList?.length === 0 ? (
+            <div className="mt-10 text-2xl">No Matching Results Founds 😓</div>
+          ) : null}
+          {filteredList?.map((restaurant) => (
+            <Link
+              key={restaurant.info.id}
+              to={"restaurants/" + restaurant.info.id}
+            >
+              {restaurant.info.veg ? (
+                <RestaurantCardPromo resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

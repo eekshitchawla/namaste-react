@@ -56,3 +56,6 @@
   height: 200px;
   background-color: #f0f0f0;
 }
+.noScroll::-webkit-scrollbar {
+  display: none;
+}
