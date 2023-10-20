@@ -11,7 +11,7 @@ const Cart = () => {
     const element = cartItems[index];
     renderItems.push(element.payload);
   }
-  console.log(renderItems);
+  // console.log(renderItems);
   const dispatch = useDispatch();
   const handleClearCart = () => {
     dispatch(clearCart());

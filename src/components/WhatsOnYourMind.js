@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React from "react";
 import { MIND_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 const WhatsOnYourMind = (mindArray) => {

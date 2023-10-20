@@ -14,13 +14,13 @@ const ItemsList = (props) => {
     dispatch(removeItem(item, id));
   };
   const qtyMap = {};
-  console.log(cartItems);
+  // console.log(cartItems);
   for (let index = 0; index < cartItems.length; index++) {
     const element = cartItems[index].payload;
     // console.log(element.card.info.id);
     qtyMap[element.card.info.id] = element.card.info.qty;
   }
-  console.log(qtyMap);
+  // console.log(qtyMap);
   return (
     <ul className="font-medium bg-white p-4 rounded-md">
       {itemCards?.map((item, i) => (
