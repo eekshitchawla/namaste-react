@@ -3,18 +3,27 @@ import { CDN_URL } from "../utils/constants";
 import { addItem, removeItem } from "../utils/cartSlice";
 import noImg from "../assets/noImg.jpeg";
 
-const ItemsList = (itemCards) => {
+const ItemsList = (props) => {
+  const { cartItems, items } = props;
+  const itemCards = items;
   const dispatch = useDispatch();
   const handleAddItems = (item) => {
     dispatch(addItem(item));
   };
   const handleRemoveItems = (item, id) => {
-    // console.log(id);
     dispatch(removeItem(item, id));
   };
+  const qtyMap = {};
+  console.log(cartItems);
+  for (let index = 0; index < cartItems.length; index++) {
+    const element = cartItems[index].payload;
+    // console.log(element.card.info.id);
+    qtyMap[element.card.info.id] = element.card.info.qty;
+  }
+  console.log(qtyMap);
   return (
     <ul className="font-medium bg-white p-4 rounded-md">
-      {itemCards?.items.map((item, i) => (
+      {itemCards?.map((item, i) => (
         <li
           key={i}
           className="text-sm p-2 text-left border-b-2 flex align-center justify-between"
@@ -54,6 +63,7 @@ const ItemsList = (itemCards) => {
                       borderRadius: "30px",
                     }}
                   ></div>
+
                   <div className="flex items-center justify-end">
                     <button
                       className=" bg-[#fc8019] text-white rounded-lg m-4 p-4"
@@ -63,7 +73,12 @@ const ItemsList = (itemCards) => {
                     >
                       +
                     </button>
-                    <p>{}</p>
+                    <p>
+                      {/* {item?.card?.info?.qty !== undefined
+                        ? item?.card?.info?.qty
+                        : 0} */}
+                      {qtyMap[item.card.info.id]}
+                    </p>
                     <button
                       className=" bg-[#fc8019] text-white rounded-lg m-4 p-4"
                       onClick={() => handleRemoveItems(item, item.card.info.id)}

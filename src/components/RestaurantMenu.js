@@ -20,7 +20,7 @@ const RestaurantMenu = () => {
 
   return resInfo ? (
     <div className="p-1 align-center">
-      <div className="flex flex-col items-center justify-center bg-[#f5f5f5]">
+      <div className="flex flex-col items-center justify-center ">
         <div className="w-6/12 py-2 flex items-center justify-between font-bold text-lg">
           <div>{restaurant?.name.toUpperCase()}</div>
           <div className="text-green-600">{restaurant?.avgRating}⭐️</div>

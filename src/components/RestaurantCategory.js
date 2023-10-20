@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import ItemsList from "./ItemsList";
 
 const RestaurantCategory = (props) => {
@@ -8,6 +9,8 @@ const RestaurantCategory = (props) => {
     // console.log(props.showIndex);
     props.setShowIndex();
   };
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <>
       <div className="align-center">
@@ -23,7 +26,10 @@ const RestaurantCategory = (props) => {
             <span>⇓</span>
           </div>
           {props.showIndex ? (
-            <ItemsList items={props?.data?.card?.card?.itemCards} />
+            <ItemsList
+              cartItems={cartItems}
+              items={props?.data?.card?.card?.itemCards}
+            />
           ) : (
             ""
           )}
