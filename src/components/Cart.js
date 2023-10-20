@@ -3,7 +3,6 @@ import ItemsList from "./ItemsList";
 import { clearCart } from "../utils/cartSlice";
 import trash from "../assets/circle-trash.png";
 import empty from "../assets/cart_is_empty.png";
-import { useState } from "react";
 
 const Cart = () => {
   var renderItems = [];

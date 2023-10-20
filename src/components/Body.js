@@ -23,7 +23,7 @@ const Body = () => {
     );
     const jsonOg = await data.json();
     const json = Object.create(jsonOg);
-    console.log(Object.isExtensible());
+    // console.log(Object.isExtensible());
     setList(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -31,7 +31,7 @@ const Body = () => {
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setMind(json?.data?.cards[1]?.card?.card?.imageGridCards?.info);
-    console.log(json);
+    // console.log(json);
   };
 
   if (status === false) return <h1>Looks like you're offline!</h1>;
