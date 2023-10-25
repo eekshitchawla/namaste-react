@@ -3,6 +3,7 @@ import ItemsList from "./ItemsList";
 import { clearCart } from "../utils/cartSlice";
 import trash from "../assets/circle-trash.png";
 import empty from "../assets/cart_is_empty.png";
+import "../App.css";
 
 const Cart = () => {
   var renderItems = [];
@@ -55,7 +56,7 @@ const Cart = () => {
               onClick={handleClearCart}
             />
           </div>
-          <div className="flex">
+          <div className="car flex">
             <div className="w-8/12">
               <ItemsList cartItems={cartItems} items={renderItems} />
             </div>

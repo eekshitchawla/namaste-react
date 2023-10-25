@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
 import { addItem, removeItem } from "../utils/cartSlice";
 import noImg from "../assets/noImg.jpeg";
+import "../App.css";
 
 const ItemsList = (props) => {
   const { cartItems, items } = props;
@@ -26,10 +27,10 @@ const ItemsList = (props) => {
       {itemCards?.map((item, i) => (
         <li
           key={i}
-          className="text-sm p-2 text-left border-b-2 flex align-center justify-between"
+          className="lc text-sm p-2 text-left border-b-2 flex align-center justify-between"
         >
           {/* {console.log(item.card.info)} */}
-          <div>
+          <div className="ll">
             <div className="flex">
               <p>
                 {item?.card?.info?.name} - Rs.{" "}
@@ -49,7 +50,7 @@ const ItemsList = (props) => {
           </div>
           <div>
             {item.card.info.imageId ? (
-              <div>
+              <div className="lr">
                 <>
                   <div
                     className="h-[20vh] w-[20vw]"

@@ -1,0 +1,25 @@
+@media screen and (max-width: 768px) {
+  .topBar {
+    flex-direction: column;
+  }
+  .lc {
+    flex-direction: column;
+    /* background-color: green; */
+  }
+  .ll {
+    padding-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .ll > p {
+    width: 100%;
+  }
+  .lr > div {
+    justify-content: start;
+  }
+  .car {
+    flex-direction: column;
+  }
+  .car > div {
+    width: 80vw;
+  }
+}
