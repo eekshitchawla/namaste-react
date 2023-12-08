@@ -30,11 +30,21 @@ const Body = () => {
     return check;
   };
   useEffect(() => {
-    window.mobileCheck()
-      ? alert(
-          "Swiggy's API is only responding on Desktop Version at the moment. Please open this site in Desktop. Sorry for the Inconvenience "
-        )
-      : fetchData();
+    // window.mobileCheck()
+    //   ? alert(
+    //       "Swiggy's API is only responding on Desktop Version at the moment. Please open this site in Desktop. Sorry for the Inconvenience "
+    //     )
+    //     window.top.location.reload();
+
+    //   : fetchData();
+    if (window.mobileCheck()) {
+      alert(
+        "Swiggy's API is only responding on Desktop Version at the moment. Please open this site in Desktop. Sorry for the Inconvenience "
+      );
+      window.top.location.reload();
+    } else {
+      fetchData();
+    }
   }, []);
 
   const fetchData = async () => {
