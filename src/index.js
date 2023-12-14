@@ -11,6 +11,7 @@ import Body from "./components/Body";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 import Shimmer from "./components/Shimmer";
+import MindItem from "./components/MindItem";
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const appRouter = createBrowserRouter([
@@ -41,7 +42,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/collections/:foodId",
-        element: <Shimmer />,
+        element: <MindItem />,
       },
       {
         path: "/grocery",
